@@ -3,10 +3,12 @@ package org.example;
 import java.util.Objects;
 import java.util.OptionalInt;
 
+
+
 public class Person {
     protected final String name;
     protected final String surname;
-    protected int age = -1; //возраст не задан
+    protected int age; //возраст не задан
     protected String address;
 
 
@@ -27,7 +29,7 @@ public class Person {
     }
 
     public boolean hasAge() {
-        return this.age != -1;
+        return this.age > 0 && this.age < 130 ;
     }
 
     public boolean hasAddress() {
@@ -43,8 +45,8 @@ public class Person {
     }
 
     public OptionalInt getAge() {
-        OptionalInt res = OptionalInt.of(0);
-        if (!hasAge()) res = OptionalInt.of(age);
+        OptionalInt res = OptionalInt.empty();
+        if (hasAge()) res = OptionalInt.of(age);
         return res;
     }
 
